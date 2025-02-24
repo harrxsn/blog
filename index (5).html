@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nothing Was The Same</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; }
+        header { background: black; color: white; padding: 20px; font-size: 24px; }
+        .product { margin: 20px; }
+        .product img { width: 300px; border-radius: 10px; max-width: 100%; }
+        .price { font-size: 20px; color: red; }
+        .buy-button { background: black; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+        .buy-button:hover { background: darkred; }
+        footer { margin-top: 20px; padding: 10px; background: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <header>Nothing Was The Same</header>
+    <div class="product">
+        <h2>Pre Distressed Joshua Tree</h2>
+        <img src="https://i.imgur.com/06kpsjL.jpeg" alt="Pre Distressed Joshua Tree T-Shirt">
+        <p class="price">$100</p>
+        
+        <!-- Stripe Buy Button -->
+        <a href="https://buy.stripe.com/3cs9DYfxw0JRacw288" target="_blank">
+            <button class="buy-button">Buy Now (via Stripe)</button>
+        </a>
+
+        <br><br>
+
+        <!-- Shopify Buy Button Placeholder -->
+        <div id="shopify-buy-button"></div>
+        
+    </div>
+    <footer>&copy; 2025 Nothing Was The Same. All rights reserved.</footer>
+
+    <script type="text/javascript">
+        (function () {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+            document.head.appendChild(script);
+
+            script.onload = function () {
+                var client = ShopifyBuy.buildClient({
+                    domain: 'your-shopify-store.myshopify.com',
+                    storefrontAccessToken: 'your-storefront-access-token'
+                });
+
+                ShopifyBuy.UI.onReady(client).then(function (ui) {
+                    ui.createComponent('product', {
+                        id: 'your-product-id',
+                        node: document.getElementById('shopify-buy-button'),
+                        moneyFormat: '%24%7B%7Bamount%7D%7D',
+                        options: {}
+                    });
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
